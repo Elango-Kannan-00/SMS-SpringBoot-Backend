@@ -17,10 +17,10 @@ public class StudentService {
     @Autowired
     private StudentRepository repository;
 
-    Student student = new Student();
-
     // Add student method.
     public StudentResponseDto addStudent(StudentRequestDto request) {
+
+        Student student = new Student();
 
         student.setName(request.getName());
         student.setEmail(request.getEmail());
@@ -42,7 +42,7 @@ public class StudentService {
     }
 
     // Get all student method.
-    public List<StudentResponseDto> getStudent() {
+    public List<StudentResponseDto> getAllStudent() {
 
         // List of student objects for iteration.
         List<Student> students = repository.findAll();
