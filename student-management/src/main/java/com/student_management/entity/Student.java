@@ -10,8 +10,8 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     // Student fields
-  
     private String name;
     private String email;
     private String department;
