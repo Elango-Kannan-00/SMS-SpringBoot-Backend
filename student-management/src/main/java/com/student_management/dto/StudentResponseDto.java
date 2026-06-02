@@ -6,7 +6,7 @@ public class StudentResponseDto {
     private long id;
     private String name;
     private String department;
-    private String cgpa;
+    private double cgpa;
 
     // Getters and Setters.
     public long getId() {
@@ -28,11 +28,11 @@ public class StudentResponseDto {
     public void setDepartment(String department) {
         this.department = department;
     }
-    public String getCgpa() {
+    public double getCgpa() {
         return cgpa;
     }
-    public void setCgpa(String cgpa) {
+    public void setCgpa(double cgpa) {
         this.cgpa = cgpa;
     }
-    
+
 }
