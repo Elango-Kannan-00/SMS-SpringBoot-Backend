@@ -8,7 +8,6 @@ public class StudentResponseDto {
     private String department;
     private String cgpa;
 
-
     // Getters and Setters.
     public long getId() {
         return id;

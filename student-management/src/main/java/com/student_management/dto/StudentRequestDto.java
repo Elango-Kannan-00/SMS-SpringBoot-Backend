@@ -2,7 +2,7 @@ package com.student_management.dto;
 
 public class StudentRequestDto {
     
-    // Student fields
+    // Student fields.
     private long id;
     private String name;
     private String email;
@@ -55,5 +55,4 @@ public class StudentRequestDto {
         this.cgpa = cgpa;
     }
 
-    
 }
