@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.student_management.dto.StudentRequestDto;
 import com.student_management.dto.StudentResponseDto;
@@ -64,5 +65,53 @@ public class StudentService {
 
         }
         return response;
+    }
+
+    // Update student by Id.
+    public StudentResponseDto updateStudent(StudentRequestDto request, long id) {
+        Student student = repository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("No User found with id: " + id));
+        
+        student.setName(request.getName());
+        student.setDepartment(request.getDepartment());
+        student.setCgpa(request.getCgpa());
+        student.setEmail(request.getEmail());
+        student.setMobileNo(request.getMobileNo());
+        student.setAge(request.getAge());
+
+        Student updatedStudent = repository.save(student);
+
+        StudentResponseDto response = new StudentResponseDto();
+
+        response.setId(updatedStudent.getId());
+        response.setName(updatedStudent.getName());
+        response.setDepartment(updatedStudent.getDepartment());
+        response.setCgpa(updatedStudent.getCgpa());
+
+        return response;
+        
+    }
+
+    // Delete student by Id.
+    public String deleteStudentById(long id) {
+        Student student = repository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("No Such Student Found by Id: " + id));
+
+        repository.delete(student);
+
+        return "Student Deleted Successfully";
+    }
+
+    // Delete all student.
+    public String deleteAllStudent() {
+        if (repository.count() == 0) {
+            return "No Student found.";
+        }
+
+        else {
+            repository.deleteAll();
+        }
+
+        return "All student deleted successfully.";
     }
 }
