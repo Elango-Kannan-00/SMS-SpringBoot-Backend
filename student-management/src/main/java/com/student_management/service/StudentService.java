@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.student_management.dto.StudentRequestDto;
 import com.student_management.dto.StudentResponseDto;
 import com.student_management.entity.Student;
+import com.student_management.exception.StudentException;
 import com.student_management.repository.StudentRepository;
 
 @Service
@@ -69,7 +70,7 @@ public class StudentService {
     // Update student by Id.
     public StudentResponseDto updateStudent(StudentRequestDto request, long id) {
         Student student = repository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("No User found with id: " + id));
+                            .orElseThrow(() -> new StudentException("No student found with id: " + id));
         
         student.setName(request.getName());
         student.setDepartment(request.getDepartment());
@@ -94,7 +95,7 @@ public class StudentService {
     // Delete student by Id.
     public String deleteStudentById(long id) {
         Student student = repository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("No Such Student Found by Id: " + id));
+                            .orElseThrow(() -> new StudentException("No student found with id: " + id));
 
         repository.delete(student);
 
